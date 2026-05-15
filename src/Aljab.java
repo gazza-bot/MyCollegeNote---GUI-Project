@@ -9,16 +9,12 @@ public class Aljab implements Matkul {
     private final String PATH_FILE = "D:\\Projects\\JAVA\\MyCollegeNote\\src\\NOTES\\" + NAMA_MATKUL + ".txt";
     private TextArea txt;
     public Aljab(TextArea txt){
-        try {
-            this.txt = txt;
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        this.txt = txt;
     }
 
     @Override
     public void setForm(){
-        this.txt.setText("==============\n"+ NAMA_MATKUL + "==============\n");
+        this.txt.setText("==============\n"+ NAMA_MATKUL + "\n==============\n");
     }   
 
     @Override

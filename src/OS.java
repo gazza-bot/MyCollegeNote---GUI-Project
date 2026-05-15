@@ -8,27 +8,24 @@ public class OS implements Matkul {
     private final String NAMA_MATKUL = "Sistem Operasi";
     private final String PATH_FILE = "D:\\Projects\\JAVA\\MyCollegeNote\\src\\NOTES\\" + NAMA_MATKUL + ".txt";
     private TextArea txt;
-    public OS(TextArea txt){
-        try {
-            this.txt = txt;
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+
+    public OS(TextArea txt) {
+        this.txt = txt;
     }
 
     @Override
-    public void setForm(){
-        this.txt.setText("==============\n"+ NAMA_MATKUL + "==============\n");
-    }   
+    public void setForm() {
+        this.txt.setText("==============\n" + NAMA_MATKUL + "\n==============\n");
+    }
 
     @Override
-    public void writeText(){
+    public void writeText() {
         File savedFile = new File(PATH_FILE);
         String note = this.txt.getText();
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(savedFile))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(savedFile))) {
             writer.write(note);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

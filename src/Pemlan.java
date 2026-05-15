@@ -9,16 +9,13 @@ public class Pemlan implements Matkul {
     private final String PATH_FILE = "D:\\Projects\\JAVA\\MyCollegeNote\\src\\NOTES\\" + NAMA_MATKUL + ".txt";
     private TextArea txt;
     public Pemlan(TextArea txt){
-        try {
             this.txt = txt;
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        
     }
 
     @Override
     public void setForm(){
-        this.txt.setText("==============\n"+ NAMA_MATKUL + "==============\n");
+        this.txt.setText("==============\n"+ NAMA_MATKUL + "\n==============\n");
     }   
 
     @Override
