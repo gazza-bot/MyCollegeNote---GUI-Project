@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Pemlan implements Matkul {
-    private final String NAMA_MATKUL = "Pemrograman Lanjut";
+public class Aljab implements Matkul {
+    private final String NAMA_MATKUL = "Aljabar Linear dan Matriks";
     private final String PATH_FILE = "D:\\Projects\\JAVA\\MyCollegeNote\\src\\NOTES\\" + NAMA_MATKUL + ".txt";
     private TextArea txt;
-    public Pemlan(TextArea txt){
+    public Aljab(TextArea txt){
         try {
             this.txt = txt;
         } catch (NullPointerException e) {

@@ -4,6 +4,8 @@ import java.awt.event.*;
 public class AppFrame extends Frame {
     private final Font FONT_LABEL = new Font("Arial", 1, 24);
     private final CheckboxGroup CBG_MATKUL = new CheckboxGroup();
+    private Checkbox cbPemlan, cbProbstat, cbDDAP, cbDBD, cbBINDO, cbOS, cbAljab;
+    private TextArea form;
     public AppFrame(){
         setSize(1024, 640);
         setLayout(null);
@@ -31,19 +33,19 @@ public class AppFrame extends Frame {
     }
 
     private void componentCB(){
-        Checkbox cbPemlan = new Checkbox("Pemlan",CBG_MATKUL,false);
+        cbPemlan = new Checkbox("Pemlan",CBG_MATKUL,false);
         cbPemlan.setBounds(275,90,60,20);
-        Checkbox cbProbstat = new Checkbox("Probstat",CBG_MATKUL,false);
+        cbProbstat = new Checkbox("Probstat",CBG_MATKUL,false);
         cbProbstat.setBounds(345,90,70,20);
-        Checkbox cbDBD = new Checkbox("DBD",CBG_MATKUL,false);
+        cbDBD = new Checkbox("DBD",CBG_MATKUL,false);
         cbDBD.setBounds(415,90,45,20);
-        Checkbox cbDDAP = new Checkbox("DDAP",CBG_MATKUL,false);
+        cbDDAP = new Checkbox("DDAP",CBG_MATKUL,false);
         cbDDAP.setBounds(470,90,60,20);
-        Checkbox cbBINDO = new Checkbox("BInd",CBG_MATKUL,false);
+        cbBINDO = new Checkbox("BInd",CBG_MATKUL,false);
         cbBINDO.setBounds(540,90,40,20);
-        Checkbox cbAljab = new Checkbox("ADM",CBG_MATKUL,false);
+        cbAljab = new Checkbox("ADM",CBG_MATKUL,false);
         cbAljab.setBounds(590,90,40,20);
-        Checkbox cbOS = new Checkbox("SO",CBG_MATKUL,false);
+        cbOS = new Checkbox("SO",CBG_MATKUL,false);
         cbOS.setBounds(640,90,40,20);
         add(cbPemlan);
         add(cbProbstat);
@@ -52,6 +54,13 @@ public class AppFrame extends Frame {
         add(cbBINDO);
         add(cbAljab);
         add(cbOS);
+        cbPemlan.addItemListener(e -> resetForm());
+        cbProbstat.addItemListener(e -> resetForm());
+        cbDBD.addItemListener(e -> resetForm());
+        cbDDAP.addItemListener(e -> resetForm());
+        cbBINDO.addItemListener(e -> resetForm());
+        cbAljab.addItemListener(e -> resetForm());
+        cbOS.addItemListener(e -> resetForm());
     }
 
     private void componentForm(){
@@ -59,7 +68,7 @@ public class AppFrame extends Frame {
         add(lbNote);
         lbNote.setBounds(487,120,50,20);
         Rectangle r = new Rectangle( 112,160,800,400);
-        TextArea form = new TextArea();
+        form = new TextArea();
         add(form);
         form.setBounds(r);
     }
@@ -68,5 +77,64 @@ public class AppFrame extends Frame {
         Button btnSave = new Button("Simpan Catatan");
         add(btnSave);
         btnSave.setBounds(450,580,124,20);
+        btnSave.addActionListener(l -> saveText());
+    }
+    
+    private final Pemlan pemlan = new Pemlan(this.form);
+    private final DBD dbd = new DBD(this.form);
+    private final DDAP ddap = new DDAP(this.form);
+    private final Aljab aljab = new Aljab(this.form);
+    private final Probstat probstat = new Probstat(this.form);
+    private final OS os = new OS(form);
+    private final BINDO bindo = new BINDO(this.form);
+
+    private void resetForm(){
+        Checkbox selected = CBG_MATKUL.getSelectedCheckbox();
+        
+        if(selected == cbPemlan){
+            pemlan.setForm();
+        }else if(selected == cbDBD){
+            dbd.setForm();
+        }else if(selected == cbDDAP){
+            ddap.setForm();
+        }else if(selected == cbAljab){
+            aljab.setForm();
+        }else if(selected == cbBINDO){
+            bindo.setForm();
+        }else if(selected == cbProbstat){
+            probstat.setForm();
+        }else if(selected == cbOS){
+            os.setForm();
+        }else if(selected == null){
+            form.setText("DEY!!! TURUN");
+        }
+    }
+    
+    private void saveText(){
+        Checkbox selected = CBG_MATKUL.getSelectedCheckbox();
+        if(selected == cbPemlan){
+            pemlan.writeText();
+            pemlan.setForm();
+        }else if(selected == cbDBD){
+            dbd.writeText();
+            dbd.setForm();
+        }else if(selected == cbDDAP){
+            ddap.writeText();
+            ddap.setForm();
+        }else if(selected == cbAljab){
+            aljab.writeText();
+            aljab.setForm();
+        }else if(selected == cbBINDO){
+            bindo.writeText();
+            bindo.setForm();
+        }else if(selected == cbProbstat){
+            probstat.writeText();
+            probstat.setForm();
+        }else if(selected == cbOS){
+            os.writeText();
+            os.setForm();
+        }else if(selected == null){
+            form.setText("DEY!!! TURUN");
+        }
     }
 }
