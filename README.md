@@ -219,4 +219,4 @@ Setiap mata kuliah mengimplementasikan interface `Matkul` dengan dua method:
 
 ---
 
-*Dibuat untuk keperluan akademis — MyCollegeNote © 2024*
+*Dibuat untuk keperluan akademis — MyCollegeNote © 2026*
